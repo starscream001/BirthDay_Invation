@@ -115,13 +115,29 @@
       font-size: 1rem;
     }
 
-    .hidden {
-      display: none;
+    .menu-prefs {
+      background: #fff5fa;
+      padding: 1em 0;
+      border-radius: 10px;
+      width: 100%;
     }
 
-    .checkbox-list label {
+    .menu-category {
+      margin-bottom: 1.5em;
+    }
+
+    .menu-category h3 {
+      font-size: 1.1rem;
+      color: #6d214f;
+      margin-bottom: 0.5em;
+      border-bottom: 1px dashed #ccc;
+      padding-bottom: 0.3em;
+    }
+
+    .menu-category label {
       display: block;
       margin-bottom: 0.3em;
+      font-size: 0.95rem;
     }
 
     @keyframes fadeIn {
@@ -161,23 +177,52 @@
       <option value="6">Буду я +5</option>
     </select>
 
-    <label>Есть предпочтения по меню?</label>
-    <select name="hasPrefs" onchange="toggleMenuPrefs(this.value)">
-      <option value="Нет">Нет</option>
-      <option value="Да">Да</option>
-    </select>
-
-    <div id="menuPrefs" class="hidden">
-      <label>Выберите предпочтения:</label>
-      <div class="checkbox-list">
-        <label><input type="checkbox" name="prefs" value="Нан"> Нан</label>
+    <label>Предпочтения по меню:</label>
+    <div class="menu-prefs">
+      <div class="menu-category">
+        <h3>Закуски</h3>
+        <label><input type="checkbox" name="prefs" value="Индийский зеленый салат"> Индийский зеленый салат</label>
+        <label><input type="checkbox" name="prefs" value="Райта"> Райта</label>
+        <label><input type="checkbox" name="prefs" value="Сабджи Панир"> Сабджи Панир</label>
+        <label><input type="checkbox" name="prefs" value="Чикен Тикка"> Чикен Тикка</label>
+        <label><input type="checkbox" name="prefs" value="Картофель фри"> Картофель фри</label>
+        <label><input type="checkbox" name="prefs" value="Алу Зира"> Алу Зира</label>
+        <label><input type="checkbox" name="prefs" value="Суп Дал"> Суп Дал</label>
+      </div>
+      <div class="menu-category">
+        <h3>Карри</h3>
+        <label><input type="checkbox" name="prefs" value="Кокосовое Панир"> Кокосовое Панир</label>
+        <label><input type="checkbox" name="prefs" value="Роган Джош"> Роган Джош</label>
         <label><input type="checkbox" name="prefs" value="Баттер Чикен"> Баттер Чикен</label>
         <label><input type="checkbox" name="prefs" value="Палак Панир"> Палак Панир</label>
-        <label><input type="checkbox" name="prefs" value="Роган Джош"> Роган Джош</label>
-        <label><input type="checkbox" name="prefs" value="Манго Ласси"> Манго Ласси</label>
-        <label><input type="checkbox" name="prefs" value="Масала Чай"> Масала Чай</label>
+        <label><input type="checkbox" name="prefs" value="Кашмир Дам Алу"> Кашмир Дам Алу</label>
         <label><input type="checkbox" name="prefs" value="Бирьяни Вегетарианский"> Бирьяни Вегетарианский</label>
+        <label><input type="checkbox" name="prefs" value="Рис Басмати"> Рис Басмати</label>
+      </div>
+      <div class="menu-category">
+        <h3>Лепёшки</h3>
+        <label><input type="checkbox" name="prefs" value="Самоса"> Самоса</label>
+        <label><input type="checkbox" name="prefs" value="Нан"> Нан</label>
+        <label><input type="checkbox" name="prefs" value="Панир Нан"> Панир Нан</label>
+        <label><input type="checkbox" name="prefs" value="Чикен Нан"> Чикен Нан</label>
+        <label><input type="checkbox" name="prefs" value="Алу Нан"> Алу Нан</label>
         <label><input type="checkbox" name="prefs" value="Гарлик Нан"> Гарлик Нан</label>
+        <label><input type="checkbox" name="prefs" value="Макки Роти"> Макки Роти</label>
+        <label><input type="checkbox" name="prefs" value="Роти"> Роти</label>
+      </div>
+      <div class="menu-category">
+        <h3>Напитки</h3>
+        <label><input type="checkbox" name="prefs" value="Масала Чай"> Масала Чай</label>
+        <label><input type="checkbox" name="prefs" value="Чай Гималаи"> Чай Гималаи</label>
+        <label><input type="checkbox" name="prefs" value="Масала Глинтвейн"> Масала Глинтвейн</label>
+        <label><input type="checkbox" name="prefs" value="Манго Ласси"> Манго Ласси</label>
+        <label><input type="checkbox" name="prefs" value="Вода без газа"> Вода без газа</label>
+        <label><input type="checkbox" name="prefs" value="Домашний лимонад"> Домашний лимонад</label>
+      </div>
+      <div class="menu-category">
+        <h3>Десерты</h3>
+        <label><input type="checkbox" name="prefs" value="Халва"> Халва</label>
+        <label><input type="checkbox" name="prefs" value="Кхир"> Кхир</label>
         <label><input type="checkbox" name="prefs" value="Гулаб Джамун"> Гулаб Джамун</label>
       </div>
     </div>
@@ -187,10 +232,6 @@
 </div>
 
 <script>
-  function toggleMenuPrefs(value) {
-    document.getElementById('menuPrefs').classList.toggle('hidden', value !== 'Да');
-  }
-
   function sendToTelegram(e) {
     e.preventDefault();
     const form = e.target;
@@ -198,7 +239,7 @@
             .map(c => `• ${c.value}`)
             .join('\n') || '—';
 
-    const msg = `🎉 RSVP на День Рождения\n\n👤 Имя: ${form.name.value}\n👥 Гостей: ${form.guests.value}\n🍴 Предпочтения: ${form.hasPrefs.value}${form.hasPrefs.value === 'Да' ? `\n${prefs}` : ''}`;
+    const msg = `🎉 RSVP на День Рождения\n\n👤 Имя: ${form.name.value}\n👥 Гостей: ${form.guests.value}\n🍴 Предпочтения:\n${prefs}`;
 
     fetch(`https://api.telegram.org/bot7686997738:AAHHAn11o4Z_GdGyrf39npZvlDytplyoj8w/sendMessage`, {
       method: 'POST',
@@ -209,7 +250,6 @@
               alert('Спасибо! Ваша заявка отправлена.');
               form.reset();
               form.style.display = 'none';
-              toggleMenuPrefs('Нет');
             })
             .catch(() => alert('Ошибка при отправке. Попробуйте позже.'));
   }
@@ -231,3 +271,4 @@
 </script>
 </body>
 </html>
+
