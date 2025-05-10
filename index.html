@@ -200,10 +200,10 @@
 
     const msg = `🎉 RSVP на День Рождения\n\n👤 Имя: ${form.name.value}\n👥 Гостей: ${form.guests.value}\n🍴 Предпочтения: ${form.hasPrefs.value}${form.hasPrefs.value === 'Да' ? `\n${prefs}` : ''}`;
 
-    fetch(`https://api.telegram.org/bot<TOKEN>/sendMessage`, {
+    fetch(`https://api.telegram.org/7686997738:AAHHAn11o4Z_GdGyrf39npZvlDytplyoj8w/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: '<CHAT_ID>', text: msg })
+      body: JSON.stringify({ chat_id: '1000043613', text: msg })
     })
             .then(() => {
               alert('Спасибо! Ваша заявка отправлена.');
