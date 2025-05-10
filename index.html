@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>You're Invited!</title>
+  <title>Приглашение на День Рождения</title>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2926/2926754.png">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
@@ -15,15 +15,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 100vh;
       text-align: center;
-      overflow: hidden;
+      padding: 2em 1em;
+      overflow-x: hidden;
     }
 
     .flower, .heart, .cake, .cracker {
       position: absolute;
       z-index: 0;
+      pointer-events: none;
     }
 
     .flower {
@@ -35,49 +37,23 @@
       opacity: 0.7;
     }
 
-    .heart {
-      font-size: 3rem;
-      animation: floatUp 4s ease-in-out forwards;
-      color: #ff5c8a;
-    }
-
-    .cake {
+    .heart, .cake, .cracker {
       font-size: 3rem;
       animation: floatUp 4s ease-in-out forwards;
     }
 
-    .cracker {
-      font-size: 3rem;
-      animation: floatUp 4s ease-in-out forwards;
-    }
+    .heart { color: #ff5c8a; }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) translateX(0) rotate(0deg);
-        opacity: 0;
-      }
-      50% {
-        transform: translateY(50vh) translateX(10vw) rotate(180deg);
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateY(-10vh) translateX(0) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+      50% { transform: translateY(50vh) translateX(10vw) rotate(180deg); opacity: 0.7; }
+      100% { transform: translateY(-10vh) translateX(0) rotate(360deg); opacity: 0; }
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
 
     h1 {
@@ -92,107 +68,166 @@
       padding: 2em;
       border-radius: 20px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
       max-width: 600px;
-      margin: 1em;
       z-index: 1;
       animation: bounceIn 1s ease-out;
+      margin-bottom: 1.5em;
     }
 
     .invite-card p {
       font-size: 1.2rem;
     }
 
+    button {
+      background-color: #ff5c8a;
+      border: none;
+      color: white;
+      padding: 0.7em 1.5em;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1em;
+      margin-top: 1.5em;
+      text-align: left;
+      background: #fff5fa;
+      padding: 1.5em;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    form label {
+      font-weight: bold;
+    }
+
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .checkbox-list label {
+      display: block;
+      margin-bottom: 0.3em;
+    }
+
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes bounceIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      60% {
-        opacity: 1;
-        transform: scale(1.05);
-      }
-      100% {
-        transform: scale(1);
-      }
+      0% { opacity: 0; transform: scale(0.8); }
+      60% { opacity: 1; transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 
 <body>
-  <div class="invite-card">
-    <h1>Приглашение!</h1>
-    <p>Приглашаем вас отметить день рождения <strong>Розалии Маник</strong>! 🎉</p>
-    <p><strong>Дата:</strong> 18 мая 2025</p>
-    <p><strong>Время:</strong> 15:00</p>
-    <p><strong>Место:</strong> ресторан «Невероятная Индия», </br>Всеволожск, </br>Южный, Центральная 2</p>
-    <p><strong>Меню:</strong> <a href="https://starscream001.github.io/vsev_india/">Посмотреть меню</a></p>
-  </div>
+<div class="invite-card">
+  <h1>Приглашение!</h1>
+  <p>Приглашаем вас отметить день рождения <strong>Розалии Маник</strong>! 🎉</p>
+  <p><strong>Дата:</strong> 18 мая 2025</p>
+  <p><strong>Время:</strong> 15:00</p>
+  <p><strong>Место:</strong> ресторан «Невероятная Индия»<br>г. Всеволожск<br>мкр. Южный, ул. Центральная, 2</p>
+  <p><strong>Меню:</strong> <a href="https://starscream001.github.io/vsev_india/" target="_blank">Посмотреть меню</a></p>
+  <button onclick="document.querySelector('form').style.display = 'flex'">Пойду!</button>
 
-  <script>
-    function createFlower() {
-      const flower = document.createElement('div');
-      flower.className = 'flower';
-      flower.style.left = Math.random() * 100 + 'vw';
-      flower.style.animationDuration = (10 + Math.random() * 10) + 's';
-      flower.style.animationDelay = '0s'; // Start immediately
-      document.body.appendChild(flower);
+  <form id="rsvpForm" onsubmit="sendToTelegram(event)">
+    <label>Имя:</label>
+    <input type="text" name="name" required>
 
-      setTimeout(() => flower.remove(), 20000);
-    }
+    <label>Сколько вас будет?</label>
+    <select name="guests" required>
+      <option value="1">Буду один</option>
+      <option value="2">Буду я +1</option>
+      <option value="3">Буду я +2</option>
+      <option value="4">Буду я +3</option>
+      <option value="5">Буду я +4</option>
+      <option value="6">Буду я +5</option>
+    </select>
 
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.textContent = '💖';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (6 + Math.random() * 6) + 's';
-      heart.style.animationDelay = '0s'; // Start immediately
-      document.body.appendChild(heart);
+    <label>Есть предпочтения по меню?</label>
+    <select name="hasPrefs" onchange="toggleMenuPrefs(this.value)">
+      <option value="Нет">Нет</option>
+      <option value="Да">Да</option>
+    </select>
 
-      setTimeout(() => heart.remove(), 12000);
-    }
+    <div id="menuPrefs" class="hidden">
+      <label>Выберите предпочтения:</label>
+      <div class="checkbox-list">
+        <label><input type="checkbox" name="prefs" value="Нан"> Нан</label>
+        <label><input type="checkbox" name="prefs" value="Баттер Чикен"> Баттер Чикен</label>
+        <label><input type="checkbox" name="prefs" value="Палак Панир"> Палак Панир</label>
+        <label><input type="checkbox" name="prefs" value="Роган Джош"> Роган Джош</label>
+        <label><input type="checkbox" name="prefs" value="Манго Ласси"> Манго Ласси</label>
+        <label><input type="checkbox" name="prefs" value="Масала Чай"> Масала Чай</label>
+        <label><input type="checkbox" name="prefs" value="Бирьяни Вегетарианский"> Бирьяни Вегетарианский</label>
+        <label><input type="checkbox" name="prefs" value="Гарлик Нан"> Гарлик Нан</label>
+        <label><input type="checkbox" name="prefs" value="Гулаб Джамун"> Гулаб Джамун</label>
+      </div>
+    </div>
 
-    function createCake() {
-      const cake = document.createElement('div');
-      cake.className = 'cake';
-      cake.textContent = '🎂';
-      cake.style.left = Math.random() * 100 + 'vw';
-      cake.style.animationDuration = (6 + Math.random() * 6) + 's';
-      cake.style.animationDelay = '0s'; // Start immediately
-      document.body.appendChild(cake);
+    <button type="submit">Отправить</button>
+  </form>
+</div>
 
-      setTimeout(() => cake.remove(), 10000);
-    }
+<script>
+  function toggleMenuPrefs(value) {
+    document.getElementById('menuPrefs').classList.toggle('hidden', value !== 'Да');
+  }
 
-    function createCracker() {
-      const cracker = document.createElement('div');
-      cracker.className = 'cracker';
-      cracker.textContent = '🎆';
-      cracker.style.left = Math.random() * 100 + 'vw';
-      cracker.style.animationDuration = (8 + Math.random() * 8) + 's';
-      cracker.style.animationDelay = '0s'; // Start immediately
-      document.body.appendChild(cracker);
+  function sendToTelegram(e) {
+    e.preventDefault();
+    const form = e.target;
+    const prefs = Array.from(form.querySelectorAll('input[name="prefs"]:checked'))
+            .map(c => `• ${c.value}`)
+            .join('\n') || '—';
 
-      setTimeout(() => cracker.remove(), 15000);
-    }
+    const msg = `🎉 RSVP на День Рождения\n\n👤 Имя: ${form.name.value}\n👥 Гостей: ${form.guests.value}\n🍴 Предпочтения: ${form.hasPrefs.value}${form.hasPrefs.value === 'Да' ? `\n${prefs}` : ''}`;
 
-    // Set intervals to create animations at random intervals
-    setInterval(createFlower, 700);
-    setInterval(createHeart, 1500);
-    setInterval(createCake, 3000);
-    setInterval(createCracker, 5000);
-  </script>
+    fetch(`https://api.telegram.org/bot<TOKEN>/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: '<CHAT_ID>', text: msg })
+    })
+            .then(() => {
+              alert('Спасибо! Ваша заявка отправлена.');
+              form.reset();
+              form.style.display = 'none';
+              toggleMenuPrefs('Нет');
+            })
+            .catch(() => alert('Ошибка при отправке. Попробуйте позже.'));
+  }
+
+  function createFloatingEl(cls, content = '') {
+    const el = document.createElement('div');
+    el.className = cls;
+    if (content) el.textContent = content;
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (6 + Math.random() * 6) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 15000);
+  }
+
+  setInterval(() => createFloatingEl('flower'), 700);
+  setInterval(() => createFloatingEl('heart', '💖'), 1500);
+  setInterval(() => createFloatingEl('cake', '🎂'), 3000);
+  setInterval(() => createFloatingEl('cracker', '🎆'), 5000);
+</script>
 </body>
-
 </html>
